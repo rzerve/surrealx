@@ -1,0 +1,20 @@
+# SurrealDB source (downloaded and transformed)
+/surrealdb/
+
+# Rust
+/target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Test artifacts
+*.db
+*.log

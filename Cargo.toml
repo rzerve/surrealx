@@ -1,0 +1,38 @@
+[workspace]
+resolver = "2"
+members = [
+    "surrealx",
+]
+
+[workspace.package]
+version = "2.3.10"
+authors = ["RZerve Team"]
+edition = "2021"
+rust-version = "1.80.0"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/rzerve/surrealx"
+
+[workspace.dependencies]
+# Core dependencies
+tokio = { version = "1", features = ["full"] }
+axum = "0.7"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+async-trait = "0.1"
+futures = "0.3"
+
+# Redis for distributed cache
+redis = { version = "0.25", features = ["tokio-comp", "connection-manager"] }
+
+# Error handling
+thiserror = "1"
+anyhow = "1"
+
+# Utilities
+chrono = "0.4"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
