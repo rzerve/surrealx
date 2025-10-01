@@ -1,16 +1,15 @@
 //! Basic SurrealX example demonstrating custom functions and events
 
-use surrealx::{SurrealX, Module, ServerConfig};
+use surrealx::{SurrealX, Module, ServerConfig, Result, Error};
 use serde_json::{json, Value};
-use anyhow::Result;
 
 #[tokio::main]
-async fn main() -> Result<()> {
+async fn main() -> anyhow::Result<()> {
     // Custom function: calculate tax
     async fn calculate_tax(args: Vec<Value>) -> Result<Value> {
         let price = args.get(0)
             .and_then(|v| v.as_f64())
-            .ok_or_else(|| anyhow::anyhow!("Invalid price"))?;
+            .ok_or_else(|| Error::Function("Invalid price".to_string()))?;
 
         let tax_rate = args.get(1)
             .and_then(|v| v.as_f64())
@@ -23,7 +22,7 @@ async fn main() -> Result<()> {
     async fn format_currency(args: Vec<Value>) -> Result<Value> {
         let amount = args.get(0)
             .and_then(|v| v.as_f64())
-            .ok_or_else(|| anyhow::anyhow!("Invalid amount"))?;
+            .ok_or_else(|| Error::Function("Invalid amount".to_string()))?;
 
         Ok(json!(format!("${:.2}", amount)))
     }
