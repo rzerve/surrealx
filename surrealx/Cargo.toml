@@ -11,6 +11,9 @@ keywords = ["surrealdb", "database", "extension", "framework"]
 categories = ["database"]
 
 [dependencies]
+# SurrealDB Server (will be integrated when transformation is complete)
+# surrealdb-server = { path = "../surrealdb/crates/server" }
+
 tokio = { workspace = true }
 axum = { workspace = true }
 serde = { workspace = true }

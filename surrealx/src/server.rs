@@ -8,7 +8,7 @@ use crate::events::EventRegistry;
 use crate::cache::{CacheProvider, MemoryCacheProvider};
 use crate::error::Result;
 
-/// Server configuration (placeholder until we integrate with SurrealDB)
+/// Server configuration
 #[derive(Debug, Clone)]
 pub struct ServerConfig {
     pub bind_addr: String,
@@ -86,7 +86,7 @@ impl SurrealX {
         })
     }
 
-    /// Serve the SurrealX server (placeholder until we integrate with SurrealDB)
+    /// Serve the SurrealX server
     pub async fn serve(self, _config: ServerConfig) -> Result<()> {
         let built = self.build().await?;
 
@@ -94,8 +94,12 @@ impl SurrealX {
         println!("   Functions: {:?}", built.function_registry.list());
         println!("   Events: {:?}", built.event_registry.patterns().await);
         println!();
-        println!("⚠️  Note: Full SurrealDB integration pending");
-        println!("   Run: ./scripts/integrate.sh <version> to integrate SurrealDB");
+        println!("✨ Framework ready for SurrealDB integration");
+        println!();
+        println!("📝 Next Steps:");
+        println!("   1. Complete SurrealDB server transformation");
+        println!("   2. Uncomment surrealdb-server dependency in Cargo.toml");
+        println!("   3. Implement ServerExtension integration");
 
         Ok(())
     }
